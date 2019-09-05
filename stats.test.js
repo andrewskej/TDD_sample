@@ -1,7 +1,6 @@
 const stats = require('./stats')
 
 describe('stats', ()=>{
-
     it('gets max value', () => {
         expect(stats.max([3,5,7,9])).toBe(9)
     })
@@ -13,8 +12,34 @@ describe('stats', ()=>{
     it('gets avg value', () => {
         expect(stats.avg([1,2,3,4,5])).toBe(3)
     })
-
 })
 
+describe('median', () => {
+    it('sorts the array', () => {
+        expect(stats.sort([5,3,4,2,1])).toEqual([1,2,3,4,5])
+    })
+
+    it('gets the median for odd length', () => {
+        expect(stats.median([1,2,3,4,5])).toBe(3)
+    })
+
+    it('gets the median for even length', () => {
+        expect(stats.median([1,2,3,4,5,6])).toBe(3.5)
+    })
+})
+
+describe('mode', () => {
+    it('has one mode', () => {
+        expect(stats.mode([1,2,2,2,3])).toBe(2)
+    })
+
+    it('has no mode', () => {
+        expect(stats.mode([1,2,3])).toBe(null)
+    })
+
+    it('has multiple mode', () => {
+        expect(stats.mode([1,2,2,3,3,4])).toEqual([2,3])
+    })
+})
 
 //'yarn test' to run test..
